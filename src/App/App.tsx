@@ -6,7 +6,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useState } from "react";
 import SearchBox from "../SearchBox/SearchBox";
 import { useDebouncedCallback } from "use-debounce";
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
 import Pagination from "../Pagination/Pagination";
 
 
@@ -20,7 +20,7 @@ export default function App() {
   }, 1000);
 
 
-   const { data, isLoading, isError, isSuccess } = useQuery({
+   const { data } = useQuery({
     queryKey: ["notes", query, page],
     queryFn: () => fetchNotes(query, page),
     // enabled: query !== "",
@@ -45,4 +45,4 @@ export default function App() {
   );
 }
 
-// export default App;
+
