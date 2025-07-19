@@ -1,7 +1,7 @@
 import css from "./Modal.module.css";
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
-import NoteForm from "../NoteForm/NoteForm";
+
 
 interface ModalProps {
   children: React.ReactNode;
