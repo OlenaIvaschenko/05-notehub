@@ -1,8 +1,14 @@
 export interface Note {
-
-    id: number;
-      title: string;
+title: string;
       content: string;
       tag: string;
+    id: number;
+      
 
+}
+
+export interface NewNoteData {
+title: string;
+      content: string;
+      tag: string;
 }
