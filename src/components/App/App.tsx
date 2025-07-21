@@ -1,5 +1,5 @@
 import NoteList from "../NoteList/NoteList";
-import { addNote, deleteNote, fetchNotes } from "../servises/noteService";
+import { addNote, deleteNote, fetchNotes } from "../../services/noteService";
 
 import css from "./App.module.css";
 import {
@@ -15,7 +15,7 @@ import { useDebouncedCallback } from "use-debounce";
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
-import type { NewNoteData } from "../types/note";
+import type { NewNoteData } from "../../types/note";
 
 export default function App() {
   const [query, setQuery] = useState("");

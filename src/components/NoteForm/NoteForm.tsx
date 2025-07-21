@@ -2,7 +2,7 @@ import css from "./NoteForm.module.css";
 import { Formik, Form, Field, type FormikHelpers, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import type { NewNoteData } from "../types/note";
+import type { NewNoteData } from "../../types/note";
 
 const NoteFormSchema = Yup.object().shape({
   title: Yup.string()
