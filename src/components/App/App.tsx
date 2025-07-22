@@ -45,19 +45,14 @@ export default function App() {
 
         {isModalOpen && (
           <Modal onClose={closeModal}>
-            <NoteForm
-              query={query}
-              page={page}
-              onClose={closeModal}
-              setPage={setPage}
-            />
+            <NoteForm onClose={closeModal} />
           </Modal>
         )}
       </header>
       {isLoading && <span>Loading...</span>}
       {isError && <span className={css.error}>Error</span>}
       {isSuccess && (
-        <NoteList notes={data ? data.notes : []} query={query} page={page} />
+        <NoteList notes={data ? data.notes : []} />
       )}
     </div>
   );

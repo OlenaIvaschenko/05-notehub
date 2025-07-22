@@ -30,18 +30,10 @@ const initialValues: NoteFormValues = {
 };
 
 interface NoteFormProps {
-  query: string;
-  page: number;
   onClose: () => void;
-  setPage: (page: number) => void;
 }
 
-export default function NoteForm({
-  query,
-  page,
-  onClose,
-  setPage,
-}: NoteFormProps) {
+export default function NoteForm({ onClose }: NoteFormProps) {
   const fieldId = useId();
 
   const queryClient = useQueryClient();
@@ -52,8 +44,8 @@ export default function NoteForm({
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes", query, page] });
-      setPage(1);
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+
       onClose();
     },
   });

@@ -3,6 +3,8 @@ export interface Note {
   content: string;
   tag: string;
   id: number;
+  createdAt:string;
+  updatedAt:string;
 }
 
 export interface NewNoteData {
