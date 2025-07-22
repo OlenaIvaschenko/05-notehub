@@ -1,11 +1,26 @@
 import css from "./NoteList.module.css";
 import type { Note } from "../../types/note";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteNote } from "../../services/noteService";
 
 interface NoteListProps {
   notes: Note[];
-  onDelete: (id: number) => void;
+  query: string;
+  page: number;
 }
-export default function NoteList({ notes, onDelete }: NoteListProps) {
+export default function NoteList({ notes, query, page }: NoteListProps) {
+  const queryClient = useQueryClient();
+
+  const deleteNoteMutation = useMutation({
+    mutationFn: (id: number) => {
+      return deleteNote(id);
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes", query, page] });
+    },
+  });
+
   return (
     <>
       {notes.length === 0 && <span>Not found</span>}
@@ -19,7 +34,7 @@ export default function NoteList({ notes, onDelete }: NoteListProps) {
                 <div className={css.footer}>
                   <span className={css.tag}>{note.tag}</span>
                   <button
-                    onClick={() => onDelete(note.id)}
+                    onClick={() => deleteNoteMutation.mutate(note.id)}
                     className={css.button}
                   >
                     Delete
