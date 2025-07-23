@@ -5,7 +5,7 @@ import css from "./App.module.css";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useState } from "react";
 import SearchBox from "../SearchBox/SearchBox";
-import { useDebouncedCallback } from "use-debounce";
+import { useDebounce } from "use-debounce";
 
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
@@ -15,15 +15,16 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [bebounceQuery]=useDebounce(query,1000);
 
-  const updateQuery = useDebouncedCallback((query) => {
+  const updateQuery = (query:string) => {
     setQuery(query);
     setPage(1);
-  }, 1000);
+  };
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ["notes", query, page],
-    queryFn: () => fetchNotes(query, page),
+    queryKey: ["notes", bebounceQuery, page],
+    queryFn: () => fetchNotes(bebounceQuery, page),
 
     placeholderData: keepPreviousData,
   });
